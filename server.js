@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3000;
 
 app.get('/hello', (req, res) => {
  const msg = `<h1>Hello World!</h1>
-<h2>Goodbye World!</h2>`;
+              <h2>Goodbye World!</h2>`;
 
   res.writeHead(200, {
     'Content-Type': 'text/html'
@@ -25,12 +25,21 @@ app.get('/hello', (req, res) => {
 });
 
 app.get('/random', (req, res) => {
-  res.end(Math.random().toString());
+  res.send(Math.random().toString());
 });
 
-app.all('*', (req, res) => {
-  res.writeHead(403);
-  res.end('Access Denied!');
+
+//order does matter with routes
+//all = any verbs, * = everything
+//app.all('*', (req, res) => {
+  //res.writeHead(403);
+  //res.end('Access Denied!');
+//});
+
+app.get('/secret', (req, res) => {
+  res
+    .status(403)
+    .send('Access Denied!');
 });
 
 app.listen(PORT, () => {
