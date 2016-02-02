@@ -24,6 +24,7 @@ app.get('/hello', (req, res) => {
   }, msg.length * 1000 + 2000);
 });
 
+// getting a random number - use /random after port#
 app.get('/random', (req, res) => {
   res.send(Math.random().toString());
 });
