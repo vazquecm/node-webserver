@@ -3,9 +3,18 @@
 const app = require('express')();
 const PORT = process.env.PORT || 3000;
 
+
+// getting a name to show
 app.get('/hello', (req, res) => {
- const msg = `<h1>Hello World!</h1>
-              <h2>Goodbye World!</h2>`;
+ let name = req.query.name;
+ // the program will use the "if" statement if no name is being
+ // queried
+ if (name ===undefined) {
+   name = 'World'
+ }
+ const msg = `<h1>Hello ${name}!</h1>
+              <h2>Goodbye ${name}!</h2>`;
+ console.log('query params ', req.query);
 
   res.writeHead(200, {
     'Content-Type': 'text/html'
