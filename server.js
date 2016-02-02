@@ -38,6 +38,19 @@ app.get('/random', (req, res) => {
   res.send(Math.random().toString());
 });
 
+// getting a random number from a min# to a max#, put the numbers
+// in the browser line and then you hit refresh and more random
+// numbers are shown
+app.get('/random/:min/:max', (req, res) => {
+  const min = req.params.min;
+  const max = req.params.max;
+  console.log('PARAMS ', req.params);
+  res.send(getRandomInt(+min, +max).toString());
+  });
+  function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max-min)) + min;
+}
+
 
 //order does matter with routes
 //all = any verbs, * = everything
