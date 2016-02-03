@@ -3,6 +3,11 @@
 const app = require('express')();
 const PORT = process.env.PORT || 3000;
 
+app.set('view engine', 'jade');
+
+app.get('/', (req, res) => {
+  res.render('index');
+});
 
 // getting a name to show
 app.get('/hello', (req, res) => {
