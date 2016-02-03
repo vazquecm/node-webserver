@@ -1,7 +1,12 @@
 doctype html
 html
   head
-    title My Awesome App
+    title= title
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css")
   body
-    h1 Welcome to my Awesome App
+    h1 Welcome to #{title}
+    p The date is now #{date.toLocaleDateString('en-US')}
+    i.fa.fa-beer
+
+    i.fa.fa-glass
 

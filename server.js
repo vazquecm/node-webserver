@@ -6,7 +6,13 @@ const PORT = process.env.PORT || 3000;
 app.set('view engine', 'jade');
 
 app.get('/', (req, res) => {
-  res.render('index');
+  // using a timeout waits for calling a database ...
+  setTimeout(() => {
+    res.render('index', {
+     title: 'Super Cool App',
+     date: new Date()
+  });
+}, 2000);
 });
 
 // getting a name to show
@@ -50,11 +56,21 @@ app.get('/random/:min/:max', (req, res) => {
   const min = req.params.min;
   const max = req.params.max;
   console.log('PARAMS ', req.params);
+
   res.send(getRandomInt(+min, +max).toString());
   });
+
   function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max-min)) + min;
 }
+
+
+app.get('/cal/:year/:month', (req,res) => {
+  const month = require('node-cal/lib/month');
+  console.log(month.setUpWholeMonth);
+  res.send('<pre>' + month.setUpWholeMonth(req.params.year, req.params.month) + '</pre>');
+
+});
 
 
 //order does matter with routes
