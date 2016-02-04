@@ -1,21 +1,29 @@
 'use strict';
 
-const app = require('express')();
+
+
+const express = require('express');
+const app = express();
 const PORT = process.env.PORT || 3000;
+const path = require('path');
+
+// express.static = I'm getting html, css files already made/not changing
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'jade');
 
+// ROUTE: root
 app.get('/', (req, res) => {
   // using a timeout waits for calling a database ...
   setTimeout(() => {
     res.render('index', {
-     title: 'Super Cool App',
+     title: 'You will need to click the image below!!!',
      date: new Date()
   });
 }, 2000);
 });
 
-// getting a name to show
+// ROUTE: hello - getting a name to show
 app.get('/hello', (req, res) => {
  let name = req.query.name;
  // the program will use the "if" statement if no name is being
@@ -27,6 +35,7 @@ app.get('/hello', (req, res) => {
               <h2>Goodbye ${name}!</h2>`;
  console.log('query params ', req.query);
 
+// response header
   res.writeHead(200, {
     'Content-Type': 'text/html'
   });
@@ -52,6 +61,7 @@ app.get('/random', (req, res) => {
 // getting a random number from a min# to a max#, put the numbers
 // in the browser line and then you hit refresh and more random
 // numbers are shown
+// ROUTE: random
 app.get('/random/:min/:max', (req, res) => {
   const min = req.params.min;
   const max = req.params.max;
@@ -60,6 +70,7 @@ app.get('/random/:min/:max', (req, res) => {
   res.send(getRandomInt(+min, +max).toString());
   });
 
+  // ROUTE: random with route params
   function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max-min)) + min;
 }
