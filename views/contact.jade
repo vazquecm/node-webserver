@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title #{title}
+   body
+     .container
+        h1 Contact
+        form(method='POST')
+           .form-group
+             label Name
+             input(type='text', name='name', placeholder='Sam Smith')
+           .form-group
+             label Email
+             input(type='text', name='email', placeholder='abc@abc.com')
+           .form-group
+             label Message
+             textarea(name='message', placeholder='Please leave a message!')
+           .form-group
+             input(type='submit', value='Contact Us!')
+
+
+
+

@@ -3,25 +3,66 @@
 
 
 const express = require('express');
+// bodyParser looks for a form
+const bodyParser = require('body-parser');
+const upload = require('multer')({ dest: 'tmp/uploads' });
+
 const app = express();
+
 const PORT = process.env.PORT || 3000;
 const path = require('path');
+
+const chalk = require('chalk');
+
 
 // express.static = I'm getting html, css files already made/not changing
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'jade');
 
+app.locals.title = 'SORRY, no calendar here.';
+
+
+// middleware functions are put above all ROUTES
+//app.use(bodyParser.urlencoded({ extended: false }));
+
+
+
+//order does matter with routes
 // ROUTE: root
 app.get('/', (req, res) => {
   // using a timeout waits for calling a database ...
   setTimeout(() => {
     res.render('index', {
-     title: 'You will need to click the image below!!!',
+     //title: 'You will need to click the image below!!!',
      date: new Date()
   });
 }, 2000);
 });
+
+
+// ROUTE: contact
+app.get('/contact', (req, res) => {
+    res.render('contact');
+});
+
+app.get('/sendphoto', (req, res) => {
+  res.render('sendphoto');
+});
+
+
+// upload.single is using "multer"
+app.post('/sendphoto', upload.single('image'), (req, res) => {
+  res.send('<h1>Thanks for sending us your photo.</h1>');
+});
+
+
+// POST method
+app.post('/contact', (req, res) => {
+  const name = req.body.name;
+  res.send('<h1>Thanks for contacting us ${name}</h1>');
+});
+
 
 // ROUTE: hello - getting a name to show
 app.get('/hello', (req, res) => {
@@ -35,10 +76,12 @@ app.get('/hello', (req, res) => {
               <h2>Goodbye ${name}!</h2>`;
  console.log('query params ', req.query);
 
+
 // response header
   res.writeHead(200, {
     'Content-Type': 'text/html'
   });
+
 
   // chunk response by character
   msg.split('').forEach((char, i) => {
@@ -47,16 +90,20 @@ app.get('/hello', (req, res) => {
     }, 1000 * i);
   });
 
+
+
   // wait for all characters to be sent
   setTimeout(() => {
     res.end();
   }, msg.length * 1000 + 2000);
 });
 
+
 // getting a random number - use /random after port#
 app.get('/random', (req, res) => {
   res.send(Math.random().toString());
 });
+
 
 // getting a random number from a min# to a max#, put the numbers
 // in the browser line and then you hit refresh and more random
@@ -70,6 +117,8 @@ app.get('/random/:min/:max', (req, res) => {
   res.send(getRandomInt(+min, +max).toString());
   });
 
+
+
   // ROUTE: random with route params
   function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max-min)) + min;
@@ -80,22 +129,16 @@ app.get('/cal/:year/:month', (req,res) => {
   const month = require('node-cal/lib/month');
   console.log(month.setUpWholeMonth);
   res.send('<pre>' + month.setUpWholeMonth(req.params.year, req.params.month) + '</pre>');
-
 });
 
 
-//order does matter with routes
-//all = any verbs, * = everything
-//app.all('*', (req, res) => {
-  //res.writeHead(403);
-  //res.end('Access Denied!');
-//});
 
 app.get('/secret', (req, res) => {
   res
     .status(403)
     .send('Access Denied!');
 });
+
 
 app.listen(PORT, () => {
   console.log(`Node.js server started. Listening on port ${PORT}`);
