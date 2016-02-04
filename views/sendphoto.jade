@@ -1,12 +1,8 @@
-doctype html
-html
-  head
-    title #{title}
-  body
-    .container
-      h1 Send us photos of you enjoying ...
+extends ./parent.jade
+block .container
 
-      form(method='post', enctype='multipart/form-data')
-        input(type='file', name='image', accept='image/*')
-        input(type='submit', value='Share your photo!')
+  h1 Send us photos of you enjoying ...
+  form(method='post', enctype='multipart/form-data')
+    input(type='file', name='image', accept='image/*')
+    input(type='submit', value='Share your photo!')
 
