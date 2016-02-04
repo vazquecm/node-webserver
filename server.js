@@ -11,21 +11,30 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 const path = require('path');
+const sassMiddleware = require('node-sass-middleware');
 
-const chalk = require('chalk');
+//SASS set up
+  app.use(sassMiddleware({
+    /* Options */
+    src: path.join(__dirname, 'public'),
+    dest: path.join(__dirname, 'public'),
+    indentedSyntax: true,
+    sourceMap: true
+}));
 
 
 // express.static = I'm getting html, css files already made/not changing
 app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'views'))
 
 app.set('view engine', 'jade');
 
 app.locals.title = 'SORRY, no calendar here.';
 
 
-// middleware functions are put above all ROUTES
-//app.use(bodyParser.urlencoded({ extended: false }));
 
+// middleware functions are put above all ROUTES
+app.use(bodyParser.urlencoded({ extended: false }));
 
 
 //order does matter with routes
@@ -34,7 +43,7 @@ app.get('/', (req, res) => {
   // using a timeout waits for calling a database ...
   setTimeout(() => {
     res.render('index', {
-     //title: 'You will need to click the image below!!!',
+     title: 'You will need to click the image below!!!',
      date: new Date()
   });
 }, 2000);
@@ -116,7 +125,6 @@ app.get('/random/:min/:max', (req, res) => {
 
   res.send(getRandomInt(+min, +max).toString());
   });
-
 
 
   // ROUTE: random with route params
