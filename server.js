@@ -5,7 +5,27 @@
 const express = require('express');
 // bodyParser looks for a form
 const bodyParser = require('body-parser');
-const upload = require('multer')({ dest: 'tmp/uploads' });
+let newFilename;
+//const upload = require('multer')({ dest: 'tmp/uploads' });
+
+
+// multer = is getting streams of files and then adding them together "multi posts" so you get
+// small bits at a time instead of waiting for a huge file to load
+const multer = require('multer');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'tmp/uploads')
+  },
+  filename: function (req, file, cb) {
+    newFilename = file.fieldname + '-' + Date.now() + '.' + file.originalname.split('.')[1];
+    cb(null, newFilename)
+    console.log(file);
+  }
+})
+
+var upload = multer({ storage: storage })
+
+const imgur = require('imgur');
 
 const app = express();
 
@@ -63,6 +83,18 @@ app.get('/sendphoto', (req, res) => {
 // upload.single is using "multer"
 app.post('/sendphoto', upload.single('image'), (req, res) => {
   res.send('<h1>Thanks for sending us your photo.</h1>');
+  console.log(newFilename);
+// uploading the new file to Imgur
+  imgur.uploadFile('tmp/uploads/' + newFilename)
+    .then(function (json) {
+        console.log(json.data.link);
+        console.log(req.file.filename);
+    })
+    .catch(function (err) {
+      console.log('imgur error message');
+        console.error(err.message);
+    });
+
 });
 
 
