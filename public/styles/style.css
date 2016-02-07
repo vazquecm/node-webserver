@@ -1,8 +1,17 @@
 .fa-calendar {
-  font-size: 75px;
-  margin: auto; }
+  font-size: 150px;
+  display: center;
+  color: darkblue;
+  margin-top: 30px; }
 
 h1 {
-  color: #4b105b; }
+  color: darkblue; }
+
+#topNavBar {
+  width: 100%;
+  padding: 10px 10px 5px; }
+
+body {
+  background-image: url("http://i765.photobucket.com/albums/xx293/Claudinenetto/Background/background4-.gif"); }
 
 /*# sourceMappingURL=style.css.map */

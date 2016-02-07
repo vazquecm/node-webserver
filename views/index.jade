@@ -7,7 +7,8 @@ html
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css")
     link(rel="stylesheet" href="../styles/style.css")
   body
-    h1 SORRY, no calendar here. #{title}
+    #topNavBar
+     h1 SORRY, no calendar here. #{title}
     p Today's date is #{date.toLocaleDateString('en-US')}
     button#submit
       i.fa.fa-calendar
