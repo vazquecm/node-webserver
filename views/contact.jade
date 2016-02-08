@@ -1,17 +1,26 @@
 extends ./parent.jade
 block .container
 
-  h1 Contact
+  h1 Please Contact Us!
+  p Please let us know what we can do better.  We value your feedback and encourage you to tell us how we can make this site more user friendly.
+  br
   form(method='POST')
-         .form-group
+      br
+     .form-group
        label Name
+       br
        input(type='text', name='name', placeholder='Sam Smith')
+       br
      .form-group
        label Email
+       br
        input(type='text', name='email', placeholder='abc@abc.com')
+       br
      .form-group
        label Message
+       br
        textarea(name='message', placeholder='Please leave a message!')
+       br
      .form-group
        input(type='submit', value='Contact Us!')
 

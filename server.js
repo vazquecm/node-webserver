@@ -145,7 +145,7 @@ app.post('/sendphoto', upload.single('image'), (req, res) => {
 //});
 
 //app.get('/api/weather', (req,res) => {
-  //const url = `https://api.forecast.io/forecast/d8036bc7483ba1872e38cbbbe00d38fe/37.8267,-122.423`;
+  //const url = ``;
   //request.get(url, (err, response, body) => {
     //if (err) throw err;
     //res.header('Access-Control-Allow-Origin', '*');

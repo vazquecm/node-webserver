@@ -8,11 +8,13 @@ html
     link(rel="stylesheet" href="../styles/style.css")
   body
     #topNavBar
-     h1 SORRY, no calendar here. #{title}
-    p Today's date is #{date.toLocaleDateString('en-US')}
-    button#submit
-      i.fa.fa-calendar
-        link(href='http://www.timeanddate.com/calendar')
+      h1 SORRY, no calendar here. #{title}
+      p Our calendar is still under construction, and we do not anticipate a release anytime soon.  Please accept our apologies.  We have redirected you to another calendar site so you are able to check your schedule.  Please check back for updates.
+      p Today's date is #{date.toLocaleDateString('en-US')}
+      button#submit
+        i.fa.fa-calendar
+          link(href='http://www.timeanddate.com/calendar')
+  footer ©  2016 C.V.M. All Rights Reserved
 script(src='../vendor/jquery/dist/jquery.min.js')
 script(src='../javascript/app.js')
 
