@@ -13,6 +13,18 @@
     "type": "git",
     "url": "git+https://github.com/vazquecm/node-webserver.git"
   },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true,
+      "mocha": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+      "no-console": 0
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "MIT",
@@ -28,6 +40,7 @@
     "imgur": "^0.1.7",
     "jade": "^1.11.0",
     "lodash": "^4.2.1",
+    "mongodb": "^2.1.7",
     "morgan": "~1.6.1",
     "multer": "^1.1.0",
     "node-cal": "github:nss-cohort-11/node-cal",
@@ -36,6 +49,9 @@
   },
   "devDependencies": {
     "bower": "^1.7.7",
+    "express": "^4.13.4",
+    "mongodb": "^2.1.7",
+    "multer": "^1.1.0",
     "nodemon": "^1.8.1"
   }
 }
