@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 3000;
 const MONGODB_URL = 'mongodb://localhost:27017/node-webserver';
 
 let db;
-
+// middleware functions are put above all ROUTES
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
@@ -45,8 +45,6 @@ app.set('view engine', 'jade');
 //set up an express variable passed to every res.render..something you want on every rendered page
 app.locals.title = 'SORRY, no calendar here.';
 
-// middleware functions are put above all ROUTES
-//app.use(bodyParser.urlencoded({ extended: false }));
 
 ///SASS set up
   app.use(sassMiddleware({
@@ -262,7 +260,7 @@ MongoClient.connect(MONGODB_URL, (err, database) => {
 
   db = database;
 
-/// example only of getting an object from within an array ///
+/// EXAMPLE OF GETTING AN OBJECT FROM WITHIN AN ARRAY ////
   // db.collection('docs').insertMany([
   //   {a : 'b'}, {c : 'd'}, {e : 'f'}
   // ], (err, res) =>  {

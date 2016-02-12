@@ -15,8 +15,4 @@ imgur - A Javascript client for the Imgur API.
 
 cheerio - Fast, flexible, and lean implementation of core jQuery designed specifically for the server.
 
-
-Commented out code deals with weather API, not working just yet...need
-help.
-
-weather and news routes not working just yet...need help.
+esLint - static analysis that is frequently used to find problematic patterns or code that doesn't adhere to certain style guidelines
