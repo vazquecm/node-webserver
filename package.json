@@ -15,6 +15,7 @@
   },
   "eslintConfig": {
     "env": {
+      "jquery": true,
       "browser": true,
       "es6": true,
       "node": true,
@@ -40,7 +41,7 @@
     "imgur": "^0.1.7",
     "jade": "^1.11.0",
     "lodash": "^4.2.1",
-    "mongodb": "^2.1.7",
+    "mongoose": "^4.4.3",
     "morgan": "~1.6.1",
     "multer": "^1.1.0",
     "node-cal": "github:nss-cohort-11/node-cal",

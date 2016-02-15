@@ -1,6 +1,5 @@
 'use-strict';
 
-const $ = require('jquery');
 
 $('#submit').click(function(){
   console.log('button works');
